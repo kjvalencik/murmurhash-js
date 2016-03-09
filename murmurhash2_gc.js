@@ -12,16 +12,16 @@
  */
 
 function murmurhash2_32_gc(key, seed) {
+  if (!Buffer.isBuffer(key)) {
+    key = new Buffer(key);
+  }
+
   seed = seed || 0x01234567;
   var l = key.length;
   var h = seed ^ l;
   var i = 0;
   var k;
   
-  if (!Buffer.isBuffer(key)) {
-    key = new Buffer(key);
-  }
-
   while (l >= 4) {
     k = key.readInt32LE(i, i + 4);
     k = (((k & 0xffff) * 0x5bd1e995) + ((((k >>> 16) * 0x5bd1e995) & 0xffff) << 16));

@@ -10,6 +10,10 @@ describe('murmur', function() {
         expect(murmur.murmur2(key)).to.equal(value);
       });
     });
+
+    it('should handle unicode properly', function() {
+      expect(murmur.murmur2('\u263a')).to.equal(422544450);
+    });
   });
   describe('murmur3', function() {
     it('should generate expected values', function() {
